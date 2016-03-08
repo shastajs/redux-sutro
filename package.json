@@ -87,7 +87,7 @@
     "lodash.reduce": "^4.0.1",
     "normalizr": "^2.0.0",
     "pluralize": "^1.2.1",
-    "tahoe": "github:shastajs/tahoe",
+    "tahoe": "shastajs/tahoe",
     "template-url": "^1.0.0"
   }
 }

@@ -4,8 +4,8 @@ import { Schema } from 'normalizr'
 import template from 'template-url'
 import reduce from 'lodash.reduce'
 
-const resourceToActions = (resourceName, resource) => {
-  let model = new Schema(resourceName)
+const resourceToActions = (resourceName, resource, options = {}) => {
+  const model = new Schema(resourceName)
   // model.define(mapValues(resource.model.relationships, relationshipMap))
 
   return reduce(resource.endpoints, (prev, endpoint) => {
@@ -14,7 +14,8 @@ const resourceToActions = (resourceName, resource) => {
       method: endpoint.method,
       model: model,
       collection: !endpoint.instance,
-      credentials: 'include'
+      credentials: 'include',
+      ...options
     })
     return prev
   }, {})

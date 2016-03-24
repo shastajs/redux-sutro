@@ -1,5 +1,9 @@
 'use strict';
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -21,11 +25,13 @@ var _lodash2 = _interopRequireDefault(_lodash);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var resourceToActions = function resourceToActions(resourceName, resource) {
+  var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
   var model = new _normalizr.Schema(resourceName);
   // model.define(mapValues(resource.model.relationships, relationshipMap))
 
   return (0, _lodash2.default)(resource.endpoints, function (prev, _endpoint) {
-    prev[_endpoint.name] = (0, _tahoe.createAction)({
+    prev[_endpoint.name] = (0, _tahoe.createAction)((0, _extends3.default)({
       endpoint: function endpoint(opt) {
         return (0, _templateUrl2.default)(_endpoint.path, opt);
       },
@@ -33,7 +39,7 @@ var resourceToActions = function resourceToActions(resourceName, resource) {
       model: model,
       collection: !_endpoint.instance,
       credentials: 'include'
-    });
+    }, options));
     return prev;
   }, {});
 };

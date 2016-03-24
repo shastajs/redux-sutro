@@ -24,9 +24,7 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var resourceToActions = function resourceToActions(resourceName, resource) {
-  var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-
+var resourceToActions = function resourceToActions(resourceName, resource, options) {
   var model = new _normalizr.Schema(resourceName);
   // model.define(mapValues(resource.model.relationships, relationshipMap))
 
@@ -45,8 +43,9 @@ var resourceToActions = function resourceToActions(resourceName, resource) {
 };
 
 exports.default = function (resources) {
+  var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
   return (0, _lodash2.default)(resources.toJS ? resources.toJS() : resources, function (prev, v, k) {
-    prev[(0, _pluralize.plural)(k)] = resourceToActions(k, v);
+    prev[(0, _pluralize.plural)(k)] = resourceToActions(k, v, options);
     return prev;
   }, {});
 };

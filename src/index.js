@@ -4,7 +4,7 @@ import { Schema } from 'normalizr'
 import template from 'template-url'
 import reduce from 'lodash.reduce'
 
-const resourceToActions = (resourceName, resource, options = {}) => {
+const resourceToActions = (resourceName, resource, options) => {
   const model = new Schema(resourceName)
   // model.define(mapValues(resource.model.relationships, relationshipMap))
 
@@ -21,8 +21,8 @@ const resourceToActions = (resourceName, resource, options = {}) => {
   }, {})
 }
 
-export default (resources) =>
+export default (resources, options = {}) =>
   reduce((resources.toJS ? resources.toJS() : resources), (prev, v, k) => {
-    prev[plural(k)] = resourceToActions(k, v)
+    prev[plural(k)] = resourceToActions(k, v, options)
     return prev
   }, {})

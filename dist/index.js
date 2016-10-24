@@ -1,12 +1,12 @@
 'use strict';
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 var _tahoe = require('tahoe');
 
@@ -43,7 +43,7 @@ var resourceToActions = function resourceToActions(resourceName, resource, optio
 };
 
 exports.default = function (resources) {
-  var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   return (0, _lodash2.default)(resources.toJS ? resources.toJS() : resources, function (prev, v, k) {
     prev[(0, _pluralize.plural)(k)] = resourceToActions(k, v, options);
     return prev;

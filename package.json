@@ -1,11 +1,10 @@
 {
   "name": "redux-sutro",
-  "version": "1.0.0",
-  "description": "Dead simple logger for shasta",
+  "version": "0.0.1",
+  "description": "Dead simple redux integration for shasta",
   "main": "dist/index.js",
   "keywords": [
     "shasta",
-    "logger",
     "shastajs",
     "redux",
     "sutro",
@@ -84,10 +83,11 @@
     }
   },
   "dependencies": {
+    "babel-runtime": "^6.11.6",
     "lodash.reduce": "^4.0.1",
     "normalizr": "^2.0.0",
     "pluralize": "^1.2.1",
-    "tahoe": "shastajs/tahoe",
+    "tahoe": "^0.0.1",
     "template-url": "^1.0.0"
   }
 }

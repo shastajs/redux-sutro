@@ -1,6 +1,6 @@
 {
   "name": "redux-sutro",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Dead simple redux integration for sutro",
   "main": "dist/index.js",
   "keywords": [

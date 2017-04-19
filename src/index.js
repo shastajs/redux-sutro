@@ -1,28 +1,24 @@
 import { createAction } from 'tahoe'
-import { plural } from 'pluralize'
-import { Schema } from 'normalizr'
 import template from 'template-url'
-import reduce from 'lodash.reduce'
 
-const resourceToActions = (resourceName, resource, options) => {
-  const model = new Schema(resourceName)
-  // model.define(mapValues(resource.model.relationships, relationshipMap))
-
-  return reduce(resource.endpoints, (prev, endpoint) => {
-    prev[endpoint.name] = createAction({
-      endpoint: (opt) => template(endpoint.path, opt),
-      method: endpoint.method,
-      model: model,
-      collection: !endpoint.instance,
+const replaceWithActions = (out, start, options) => {
+  Object.keys(start).forEach((k) => {
+    const v = start[k]
+    if (!v.path || !v.method) {
+      out[k] = replaceWithActions({}, v, options)
+      return
+    }
+    out[k] = createAction({
+      endpoint: (opt) => template(v.path, opt),
+      method: v.method,
       credentials: 'include',
       ...options
     })
-    return prev
-  }, {})
+  })
+  return out
 }
 
-export default (resources, options = {}) =>
-  reduce((resources.toJS ? resources.toJS() : resources), (prev, v, k) => {
-    prev[plural(k)] = resourceToActions(k, v, options)
-    return prev
-  }, {})
+export default (resources, options = {}) => {
+  const start = resources.toJS ? resources.toJS() : resources
+  return replaceWithActions({}, start, options)
+}

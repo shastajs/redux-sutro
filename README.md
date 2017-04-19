@@ -1,6 +1,6 @@
 # redux-sutro [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
-Generates [tahoe](https://github.com/shastajs/tahoe) redux actions from [sutro](https://github.com/shastajs/sutro) meta-information. Use your remote APIs with ease.
+Generates [tahoe](https://github.com/shastajs/tahoe) redux actions from [sutro](https://github.com/shastajs/sutro) swagger information. Use your remote APIs with ease.
 
 This is a work in progress - There is sparse documentation, no tests, and it's not on npm. Use at your own risk while we finish up!
 

@@ -9,7 +9,10 @@ const replaceWithActions = (out, start, options) => {
       return
     }
     out[k] = createAction({
-      endpoint: (opt) => template(v.path, opt),
+      endpoint: (opt) => {
+        if (options.rootUrl) return `${options.rootUrl}${template(v.path, opt)}`
+        return template(v.path, opt)
+      },
       method: v.method,
       credentials: 'include',
       ...options

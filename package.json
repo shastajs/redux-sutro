@@ -84,6 +84,7 @@
   "dependencies": {
     "babel-runtime": "^6.11.6",
     "tahoe": "^1.0.0",
-    "template-url": "^1.0.0"
+    "template-url": "^1.0.0",
+    "url-join": "^2.0.2"
   }
 }

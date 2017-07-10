@@ -18,6 +18,10 @@ var _templateUrl = require('template-url');
 
 var _templateUrl2 = _interopRequireDefault(_templateUrl);
 
+var _urlJoin = require('url-join');
+
+var _urlJoin2 = _interopRequireDefault(_urlJoin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var replaceWithActions = function replaceWithActions(out, start, options) {
@@ -29,6 +33,7 @@ var replaceWithActions = function replaceWithActions(out, start, options) {
     }
     out[k] = (0, _tahoe.createAction)((0, _extends3.default)({
       endpoint: function endpoint(opt) {
+        if (options.rootUrl) return (0, _urlJoin2.default)(options.rootUrl, (0, _templateUrl2.default)(v.path, opt));
         return (0, _templateUrl2.default)(v.path, opt);
       },
       method: v.method,
